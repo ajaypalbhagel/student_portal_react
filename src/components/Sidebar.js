@@ -6,20 +6,10 @@ import { MdArrowRight } from "react-icons/md";
 import { IoMan } from "react-icons/io5";
 import { FaPeopleCarry } from "react-icons/fa";
 import { FaGraduationCap } from "react-icons/fa6";
-import AddStudents from '../pages/Students/AddStudents';
 import Dashboard from '../pages/Dashboard';
 
+
 export default function Sidebar() { 
-
-  const [dashboardBtn, setDashboardBtn] = useState(false)
-
-  function handleDashboard(){
-    setDashboardBtn(console.log('dashboard'))
-  }
-  function handleStudents(){
-    setDashboardBtn(console.log('AddStudents'))
-  }
-  
 
   return (
     <>
@@ -28,9 +18,9 @@ export default function Sidebar() {
      <div className='sidebar_btns'>
         <ul>
             <li>
-                <button onClick={handleDashboard}>
+                <button>
                     <span className='sidebar_btns_icons_left'><MdOutlineHome /></span>
-                     Dashboard
+                     <Dashboard/>
                     <span className='sidebar_btns_icons_right'><MdArrowRight /></span>
                 </button>
             </li>
@@ -61,7 +51,7 @@ export default function Sidebar() {
       <div className='sidebar_btns'>
         <ul>
             <li>
-                <button onClick={handleStudents} >
+                <button>
                     <span className='sidebar_btns_icons_left'><FaPeopleCarry /></span>
                      Students
                     <span className='sidebar_btns_icons_right'><MdArrowRight /></span>

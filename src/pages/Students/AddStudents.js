@@ -41,10 +41,10 @@ export default function AddStudents() {
             />
           </div>
           <div style={{ flex: 1 }}>
-            <label style={{ display: 'block', marginBottom: '5px' }}>Registration Date</label>
-            <div style={{ display: 'flex', alignItems: 'center', border: '1px solid #ccc', borderRadius: '4px' }}>
-              <input type="text"  placeholder="Enter Date" 
-                style={{width: '70vh', padding: '5px', border: 'none', borderRadius: '4px 0 0 4px' }}
+            <label style={{ display: 'block', marginBottom: '5px'}}>Registration Date</label>
+            <div style={{ display: 'flex', alignItems: 'center', borderRadius: '4px' }}>
+              <input type="date"  placeholder="Enter Date" 
+                style={{width: '73vh', padding: '5px', border: '1px solid #ccc', borderRadius: '4px' }}
               />
               <MdOutlineDateRange style={{ padding: '8px', color: '#666' }} />
             </div>
@@ -60,9 +60,9 @@ export default function AddStudents() {
           </div>
           <div style={{ flex: 1 }}>
             <label style={{ display: 'block', marginBottom: '5px' }}>Class</label>
-            <div style={{ display: 'flex', alignItems: 'center', border: '1px solid #ccc', borderRadius: '4px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', borderRadius: '4px' }}>
               <input type="text"  placeholder="Class" 
-                style={{width: '70vh', padding: '5px', border: 'none', borderRadius: '4px 0 0 4px' }}
+                style={{width: '73vh', padding: '5px', border: '1px solid #ccc', borderRadius: '4px 0 0 4px' }}
               />
               <MdOutlineDateRange style={{ padding: '8px', color: '#666' }} />
             </div>
@@ -72,15 +72,19 @@ export default function AddStudents() {
         <div style={{ display: 'flex', gap: '20px' }}>
           <div style={{ flex: 1 }}>
             <label style={{ display: 'block', marginBottom: '5px' }}>Gender</label>
-            <input  type="text" placeholder="Gender" 
-              style={{width: '70vh', padding: '5px', border: '1px solid #ccc', borderRadius: '4px' }}
-            />
+            <select  type="text" placeholder="Gender" 
+              style={{width: '70vh', padding: '5px', border: '1px solid #ccc', borderRadius: '4px' }}>
+                <option value="male">Select Options</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
           </div>
           <div style={{ flex: 1 }}>
             <label style={{ display: 'block', marginBottom: '5px' }}>Mobile Number</label>
-            <div style={{ display: 'flex', alignItems: 'center', border: '1px solid #ccc', borderRadius: '4px' }}>
-              <input type="text"  placeholder="Mobile Number" 
-                style={{width: '70vh', padding: '5px', border: 'none', borderRadius: '4px 0 0 4px' }}
+            <div style={{ display: 'flex', alignItems: 'center', borderRadius: '4px' }}>
+              <input type="number"  placeholder="Mobile Number" 
+                style={{width: '73vh', padding: '5px',border: '1px solid #ccc', borderRadius: '4px 0 0 4px' }}
               />
               <MdOutlineDateRange style={{ padding: '8px', color: '#666' }} />
             </div>
@@ -96,9 +100,9 @@ export default function AddStudents() {
           </div>
           <div style={{ flex: 1 }}>
             <label style={{ display: 'block', marginBottom: '5px' }}>Parent Mobile Number</label>
-            <div style={{ display: 'flex', alignItems: 'center', border: '1px solid #ccc', borderRadius: '4px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', borderRadius: '4px' }}>
               <input type="text"  placeholder="Parent Mobile Number" 
-                style={{width: '70vh', padding: '5px', border: 'none', borderRadius: '4px 0 0 4px' }}
+                style={{width: '73vh', padding: '5px', border: '1px solid #ccc', borderRadius: '4px 0 0 4px' }}
               />
               <MdOutlineDateRange style={{ padding: '8px', color: '#666' }} />
             </div>
@@ -108,15 +112,15 @@ export default function AddStudents() {
         <div style={{ display: 'flex', gap: '20px' }}>
           <div style={{ flex: 1 }}>
             <label style={{ display: 'block', marginBottom: '5px' }}>Date of Birth</label>
-            <input  type="text" placeholder="Enter Email" 
+            <input  type="date" placeholder="Enter Email" 
               style={{width: '70vh', padding: '5px', border: '1px solid #ccc', borderRadius: '4px' }}
             />
           </div>
           <div style={{ flex: 1 }}>
             <label style={{ display: 'block', marginBottom: '5px' }}>Blood group</label>
-            <div style={{ display: 'flex', alignItems: 'center', border: '1px solid #ccc', borderRadius: '4px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', borderRadius: '4px' }}>
               <input type="text"  placeholder="Blood group" 
-                style={{width: '70vh', padding: '5px', border: 'none', borderRadius: '4px 0 0 4px' }}
+                style={{width: '73vh', padding: '5px', border: '1px solid #ccc', borderRadius: '4px 0 0 4px' }}
               />
               <MdOutlineDateRange style={{ padding: '8px', color: '#666' }} />
             </div>
