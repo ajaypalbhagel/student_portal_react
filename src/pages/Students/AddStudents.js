@@ -1,13 +1,54 @@
+"use client";
 import React, { useState } from 'react';
 import { MdOutlineDateRange } from "react-icons/md";
 
 export default function AddStudents() {
 
-  const [name, setName] = useState('')
+  const [firstName, setFirstName] = useState('') 
+  const [firstNameEmpty,setFirstNameEmpty] = useState(true)
+  const [lastName, setLastName] = useState('') 
+  const [lastNameEmpty,setLastNameEmpty] = useState(true)
+  const [email, setEmail] = useState('')
+  const [emailEmpty,setEmailEmpty] = useState(true)
+  const [registerDate, setRegisterDate] = useState('')
+  const [registerDateEmpty, setRegisterDateEmpty] = useState(true)
+  const [rollNo, setRollNo] = useState('')
+  const [rollNoEmpty, setRollNoEmpty] = useState(true)
+  const [className, setClassName] = useState('')
+  const [classNameEmpty, setClassNameEmpty] = useState(true)
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
-  function handleFirstName(e){
-    const value = e.target.value;
-    setName(value);
+  function valiation(){
+    if(firstName ==''){
+      setFirstNameEmpty(false);
+    }
+    if(lastName == ''){
+      setLastNameEmpty(false);
+    }
+    if(email == ''){
+      setEmailEmpty(false);
+    }
+    if(registerDate == ''){
+      setRegisterDateEmpty(false);
+    }
+    if(rollNo == ''){
+      setRollNoEmpty(false)
+    }
+    if(className == ''){
+      setClassNameEmpty(false)
+    }
+    else{
+      setFirstNameEmpty(true);
+      setLastNameEmpty(true);
+      setEmailEmpty(true);
+      setRegisterDateEmpty(true)
+      setRollNoEmpty(true)
+    }
+    if (email !== '') {
+      setFormSubmitted(true); 
+    } else {
+      setFormSubmitted(false); 
+    }
   }
 
   return (
@@ -19,61 +60,67 @@ export default function AddStudents() {
         
         <div style={{ display: 'flex', gap: '20px' }}>
           <div style={{ flex: 1 }}>
-            <label style={{ display: 'block', marginBottom: '5px' }}>First Name</label>
-            <input type="text" value={name} placeholder="Enter First Name" 
-              style={{ width: '70vh', padding: '5px', border: '1px solid #ccc', borderRadius: '4px' }}
+            <label style={{ display: 'block', marginBottom: '5px' }}>First Name<span style={{color: 'red'}}>*</span></label>
+            <input type="text"  value={firstName}   onChange={(e) => setFirstName(e.target.value)}  placeholder="Enter First Name" 
+              style={{ width: '70vh', padding: '5px', border: `${ firstNameEmpty ?'1px solid #ccc' : '1px solid red'}`, borderRadius: '4px' }}
             />
+            <span style={{color: 'red', fontSize: '15px'}}>{firstNameEmpty ? "" : "please enter First name."}</span>
           </div>
           <div style={{ flex: 1 }}>
-            <label style={{ display: 'block', marginBottom: '5px' }}>Last Name</label>
-            <input type="text" placeholder="Enter First Name" 
-              style={{ width: '73vh', padding: '5px', border: '1px solid #ccc', borderRadius: '4px' }}
+            <label style={{ display: 'block', marginBottom: '5px' }}>Last Name<span style={{color: 'red'}}>*</span></label>
+            <input type="text" value={lastName}   onChange={(e) => setLastName(e.target.value)} placeholder="Enter First Name" 
+              style={{ width: '73vh', padding: '5px',border: `${ lastNameEmpty ?'1px solid #ccc' : '1px solid red'}`, borderRadius: '4px' }}
             />
+            <span style={{color: 'red', fontSize: '15px'}}>{lastNameEmpty ? "" : "please enter last name."}</span>
           </div>
         </div>
 
         
         <div style={{ display: 'flex', gap: '20px' }}>
           <div style={{ flex: 1 }}>
-            <label style={{ display: 'block', marginBottom: '5px' }}>Email</label>
-            <input  type="text" placeholder="Enter Email" 
-              style={{width: '70vh', padding: '5px', border: '1px solid #ccc', borderRadius: '4px' }}
+            <label style={{ display: 'block', marginBottom: '5px' }}>Email<span style={{color: 'red'}}>*</span></label>
+            <input  type="text" value={email}   onChange={(e) => setEmail(e.target.value)} placeholder="Enter Email" 
+              style={{width: '70vh', padding: '5px',border: `${ emailEmpty ?'1px solid #ccc' : '1px solid red'}`, borderRadius: '4px' }}
             />
+            <span style={{color: 'red', fontSize: '15px'}}>{emailEmpty ? "" : "please enter email."}</span>
           </div>
           <div style={{ flex: 1 }}>
-            <label style={{ display: 'block', marginBottom: '5px'}}>Registration Date</label>
+            <label style={{ display: 'block', marginBottom: '5px'}}>Registration Date<span style={{color: 'red'}}>*</span></label>
             <div style={{ display: 'flex', alignItems: 'center', borderRadius: '4px' }}>
-              <input type="date"  placeholder="Enter Date" 
-                style={{width: '73vh', padding: '5px', border: '1px solid #ccc', borderRadius: '4px' }}
+              <input type="date" value={registerDate}   onChange={(e) => setRegisterDate(e.target.value)}  placeholder="Enter Date" 
+                style={{width: '73vh', padding: '5px',border: `${ registerDateEmpty ?'1px solid #ccc' : '1px solid red'}`, borderRadius: '4px' }}
               />
               <MdOutlineDateRange style={{ padding: '8px', color: '#666' }} />
             </div>
+            <span style={{color: 'red', fontSize: '15px'}}>{registerDateEmpty ? "" : "please enter registration date."}</span>
           </div>
         </div>
         
         <div style={{ display: 'flex', gap: '20px' }}>
           <div style={{ flex: 1 }}>
-            <label style={{ display: 'block', marginBottom: '5px' }}>Roll No.</label>
-            <input  type="text" placeholder="Roll No" 
-              style={{width: '70vh', padding: '5px', border: '1px solid #ccc', borderRadius: '4px' }}
+            <label style={{ display: 'block', marginBottom: '5px' }}>Roll No.<span style={{color: 'red'}}>*</span></label>
+            <input  type="text"  value={rollNo}   onChange={(e) => setRollNo(e.target.value)} placeholder="Roll No"  
+              style={{width: '70vh', padding: '5px',border: `${ rollNoEmpty ?'1px solid #ccc' : '1px solid red'}`,  borderRadius: '4px' }}
             />
+             <span style={{color: 'red', fontSize: '15px'}}>{rollNoEmpty ? "" : "please enter Roll No."}</span>
           </div>
           <div style={{ flex: 1 }}>
-            <label style={{ display: 'block', marginBottom: '5px' }}>Class</label>
+            <label style={{ display: 'block', marginBottom: '5px' }}>Class<span style={{color: 'red'}}>*</span> </label>
             <div style={{ display: 'flex', alignItems: 'center', borderRadius: '4px' }}>
-              <input type="text"  placeholder="Class" 
-                style={{width: '73vh', padding: '5px', border: '1px solid #ccc', borderRadius: '4px 0 0 4px' }}
+              <input type="text" value={className} onChange={(e) => setClassName(e.target.value)}  placeholder="Class" 
+                style={{width: '73vh', padding: '5px', border:`${classNameEmpty ?'1px solid #ccc' :'1px solid red' }`, borderRadius: '4px 0 0 4px' }}
               />
               <MdOutlineDateRange style={{ padding: '8px', color: '#666' }} />
             </div>
+            <span style={{color: 'red', fontSize: '15px'}}>{classNameEmpty ? '' : "please enter class."}</span>
           </div>
         </div>
        
         <div style={{ display: 'flex', gap: '20px' }}>
           <div style={{ flex: 1 }}>
-            <label style={{ display: 'block', marginBottom: '5px' }}>Gender</label>
+            <label style={{ display: 'block', marginBottom: '5px' }}>Gender </label>
             <select  type="text" placeholder="Gender" 
-              style={{width: '70vh', padding: '5px', border: '1px solid #ccc', borderRadius: '4px' }}>
+              style={{width: '70vh', padding: '5px', border:'1px solid #ccc',  borderRadius: '4px' }}>
                 <option value="male">Select Options</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
@@ -81,10 +128,10 @@ export default function AddStudents() {
               </select>
           </div>
           <div style={{ flex: 1 }}>
-            <label style={{ display: 'block', marginBottom: '5px' }}>Mobile Number</label>
+            <label style={{ display: 'block', marginBottom: '5px' }}>Mobile Number </label>
             <div style={{ display: 'flex', alignItems: 'center', borderRadius: '4px' }}>
               <input type="number"  placeholder="Mobile Number" 
-                style={{width: '73vh', padding: '5px',border: '1px solid #ccc', borderRadius: '4px 0 0 4px' }}
+                style={{width: '73vh', padding: '5px',border:'1px solid #ccc',  borderRadius: '4px 0 0 4px' }}
               />
               <MdOutlineDateRange style={{ padding: '8px', color: '#666' }} />
             </div>
@@ -93,16 +140,16 @@ export default function AddStudents() {
        
         <div style={{ display: 'flex', gap: '20px' }}>
           <div style={{ flex: 1 }}>
-            <label style={{ display: 'block', marginBottom: '5px' }}>Parent Name</label>
+            <label style={{ display: 'block', marginBottom: '5px' }}>Parent Name </label>
             <input  type="text" placeholder="Parent Name" 
-              style={{width: '70vh', padding: '5px', border: '1px solid #ccc', borderRadius: '4px' }}
+              style={{width: '70vh', padding: '5px', border:'1px solid #ccc', borderRadius: '4px' }}
             />
           </div>
           <div style={{ flex: 1 }}>
             <label style={{ display: 'block', marginBottom: '5px' }}>Parent Mobile Number</label>
             <div style={{ display: 'flex', alignItems: 'center', borderRadius: '4px' }}>
               <input type="text"  placeholder="Parent Mobile Number" 
-                style={{width: '73vh', padding: '5px', border: '1px solid #ccc', borderRadius: '4px 0 0 4px' }}
+                style={{width: '73vh', padding: '5px', border:'1px solid #ccc', borderRadius: '4px 0 0 4px' }}
               />
               <MdOutlineDateRange style={{ padding: '8px', color: '#666' }} />
             </div>
@@ -113,21 +160,21 @@ export default function AddStudents() {
           <div style={{ flex: 1 }}>
             <label style={{ display: 'block', marginBottom: '5px' }}>Date of Birth</label>
             <input  type="date" placeholder="Enter Email" 
-              style={{width: '70vh', padding: '5px', border: '1px solid #ccc', borderRadius: '4px' }}
+              style={{width: '70vh', padding: '5px', border:'1px solid #ccc', borderRadius: '4px' }}
             />
           </div>
           <div style={{ flex: 1 }}>
             <label style={{ display: 'block', marginBottom: '5px' }}>Blood group</label>
             <div style={{ display: 'flex', alignItems: 'center', borderRadius: '4px' }}>
               <input type="text"  placeholder="Blood group" 
-                style={{width: '73vh', padding: '5px', border: '1px solid #ccc', borderRadius: '4px 0 0 4px' }}
+                style={{width: '73vh', padding: '5px',border:'1px solid #ccc', borderRadius: '4px 0 0 4px' }}
               />
               <MdOutlineDateRange style={{ padding: '8px', color: '#666' }} />
             </div>
           </div>
         </div>
         <div>
-          <label>Address</label>
+          <label>Address </label>
           <div>
             <textarea style={{width: '150vh', height: '10vh', padding: '5px'}} placeholder='Address'/>
             </div>
@@ -138,8 +185,9 @@ export default function AddStudents() {
         </div>
         <div>
         <div>
-          <button style={{backgroundColor: '#4c8df6ff', color: '#fff', border: 'transparent',margin: '2px', width: '70px', height: '30px', borderRadius: '2px'}}>Submit</button>
+          <button onClick={valiation}  style={{backgroundColor: '#4c8df6ff', color: '#fff', border: 'transparent',margin: '2px', width: '70px', height: '30px', borderRadius: '2px'}}>Submit</button>
           <button style={{backgroundColor: '#6dd58cff', color: '#0f5223ff', border: 'transparent', width: '70px', height: '30px', borderRadius: '2px'}}>Cancel</button>
+          <span style={{ color: 'green', padding: '10px' }}>{formSubmitted ? 'Form submitted successfully!' : ''}</span>
         </div>
         </div>
 
