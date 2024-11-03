@@ -18,7 +18,7 @@ export default function DashboardLayout({ children }) {
         </Link>
         <Menu />
       </div>
-      <div className="w-[90%] md:w-[94%] lg:w-[85%] xl:w-[88%] bg-orange-200  min-h-full">{children}</div>
+      <div className="w-[90%] md:w-[94%] lg:w-[85%] xl:w-[88%] bg-gray-100  min-h-full">{children}</div>
     </div>
 
   </div>

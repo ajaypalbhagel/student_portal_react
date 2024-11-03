@@ -1,163 +1,389 @@
 "use client";
-import React from 'react'
+import React from "react";
 import { MdOutlineDateRange } from "react-icons/md";
-import { useState } from 'react';
-
+import { AiOutlineInfoCircle } from "react-icons/ai";
+import * as FcIcons from 'react-icons/fc';
+import { AiOutlineRight } from "react-icons/ai";
+import { useState } from "react";
 
 export default function page() {
+  // Using a single state object for all fields
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    registrationDate: "",
+    rollNo: "",
+    studentClass: "",
+    gender: "",
+    mobileNumber: "",
+    parentName: "",
+    parentMobileNumber: "",
+    dob: "",
+    bloodGroup: "",
+    address: "",
+  });
 
-  const [firstName, setFirstName] = useState('') // useState to store First Name
-  const [lastName, setLastName] = useState('') // useState to store First Name
-  const [firstNameEmpty,setFirstNameEmpty] = useState(true)
+  const [errors, setErrors] = useState({});
 
+  // Handle change for each input
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
+  // Validate all fields
+  const validateAllFields = () => {
+    let validationErrors = {};
 
-  function valiation(){
-    console.log("validation")
-    if(firstName==''){
-      console.log("first is empty !")
-      setFirstNameEmpty(false);
-    } 
-    else{
-      setFirstNameEmpty(true);
+    // Define custom error messages for each field
+    const errorMessages = {
+      firstName: "Please enter a first name",
+      lastName: "Please enter a last name",
+      email: "Please enter an email",
+      registrationDate: "Please select a registration date",
+      rollNo: "Please enter a roll number",
+      studentClass: "Please enter a class",
+      gender: "Please select a gender",
+      mobileNumber: "Please enter a mobile number",
+      parentName: "Please enter a parent name",
+      parentMobileNumber: "Please enter a parent mobile number",
+      dob: "Please enter a date of birth",
+      bloodGroup: "Please enter a blood group",
+      address: "Please enter an address",
+    };
+
+    // Loop over formData to check for empty fields
+    Object.keys(formData).forEach((field) => {
+      if (!formData[field].trim()) {
+        validationErrors[field] = errorMessages[field];
+      }
+    });
+
+    setErrors(validationErrors);
+    return Object.keys(validationErrors).length === 0; // Returns true if no errors
+  };
+
+  const handleSubmit = () => {
+    if (validateAllFields()) {
+      console.log("Form is valid! Submitting data:", formData);
+      // Process the form submission
+    } else {
+      console.log("Form is invalid. Please fill in all required fields.");
     }
-    
-  }
+  };
 
   return (
-    <div style={{ backgroundColor: '#fff', padding: '10px', maxWidth: '100%', margin: '5px' }}>
-      <h3>Basic Info</h3>
-      <hr />
-      
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '10px' }}>
-        
-        <div style={{ display: 'flex', gap: '20px' }}>
-          <div style={{ flex: 1 }}>
-            <label style={{ display: 'block', marginBottom: '5px' }}>First Name</label>
-            <input type="text"  value={firstName}   onChange={(e) => setFirstName(e.target.value)} placeholder="Enter First Name" 
-              style={{ width: '70vh', padding: '5px', border: `${ firstNameEmpty ?'1px solid #ccc' : '1px solid red'}`, borderRadius: '4px' }}
-            />
-            <span>{firstNameEmpty ? "" : "please enter name"}</span>
-          </div>
-          <div style={{ flex: 1 }}>
-            <label style={{ display: 'block', marginBottom: '5px' }}>Last Name</label>
-            <input type="text" placeholder="Enter First Name" 
-              style={{ width: '73vh', padding: '5px', border: '1px solid #ccc', borderRadius: '4px' }}
-            />
-          </div>
+    <div>
+      <div className=" bg-white p-4 max-w-full mx-1 my-2 flex justify-between">
+        <div>
+          <span className="text-blue-500 text-xl font-bold ">Add Student</span>
         </div>
+        <div className="flex">
+          <span className= "  flex text-gray-400">
+            
+            students  <AiOutlineRight size={24}/></span>
+          <span className="text-blue-500"> Add student</span>
+        </div>
+      </div>
+      {/* Grey line separator */}
+      {/* <hr className="border-gray-300 mb-4" /> */}
 
-        
-        <div style={{ display: 'flex', gap: '20px' }}>
-          <div style={{ flex: 1 }}>
-            <label style={{ display: 'block', marginBottom: '5px' }}>Email</label>
-            <input  type="text" placeholder="Enter Email" 
-              style={{width: '70vh', padding: '5px', border: '1px solid #ccc', borderRadius: '4px' }}
-            />
-          </div>
-          <div style={{ flex: 1 }}>
-            <label style={{ display: 'block', marginBottom: '5px'}}>Registration Date</label>
-            <div style={{ display: 'flex', alignItems: 'center', borderRadius: '4px' }}>
-              <input type="date"  placeholder="Enter Date" 
-                style={{width: '73vh', padding: '5px', border: '1px solid #ccc', borderRadius: '4px' }}
-              />
-              <MdOutlineDateRange style={{ padding: '8px', color: '#666' }} />
-            </div>
-          </div>
-        </div>
-        
-        <div style={{ display: 'flex', gap: '20px' }}>
-          <div style={{ flex: 1 }}>
-            <label style={{ display: 'block', marginBottom: '5px' }}>Roll No.</label>
-            <input  type="text" placeholder="Roll No" 
-              style={{width: '70vh', padding: '5px', border: '1px solid #ccc', borderRadius: '4px' }}
-            />
-          </div>
-          <div style={{ flex: 1 }}>
-            <label style={{ display: 'block', marginBottom: '5px' }}>Class</label>
-            <div style={{ display: 'flex', alignItems: 'center', borderRadius: '4px' }}>
-              <input type="text"  placeholder="Class" 
-                style={{width: '73vh', padding: '5px', border: '1px solid #ccc', borderRadius: '4px 0 0 4px' }}
-              />
-              <MdOutlineDateRange style={{ padding: '8px', color: '#666' }} />
-            </div>
-          </div>
-        </div>
-       
-        <div style={{ display: 'flex', gap: '20px' }}>
-          <div style={{ flex: 1 }}>
-            <label style={{ display: 'block', marginBottom: '5px' }}>Gender</label>
-            <select  type="text" placeholder="Gender" 
-              style={{width: '70vh', padding: '5px', border: '1px solid #ccc', borderRadius: '4px' }}>
-                <option value="male">Select Options</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-              </select>
-          </div>
-          <div style={{ flex: 1 }}>
-            <label style={{ display: 'block', marginBottom: '5px' }}>Mobile Number</label>
-            <div style={{ display: 'flex', alignItems: 'center', borderRadius: '4px' }}>
-              <input type="number"  placeholder="Mobile Number" 
-                style={{width: '73vh', padding: '5px',border: '1px solid #ccc', borderRadius: '4px 0 0 4px' }}
-              />
-              <MdOutlineDateRange style={{ padding: '8px', color: '#666' }} />
-            </div>
-          </div>
-        </div>
-       
-        <div style={{ display: 'flex', gap: '20px' }}>
-          <div style={{ flex: 1 }}>
-            <label style={{ display: 'block', marginBottom: '5px' }}>Parent Name</label>
-            <input  type="text" placeholder="Parent Name" 
-              style={{width: '70vh', padding: '5px', border: '1px solid #ccc', borderRadius: '4px' }}
-            />
-          </div>
-          <div style={{ flex: 1 }}>
-            <label style={{ display: 'block', marginBottom: '5px' }}>Parent Mobile Number</label>
-            <div style={{ display: 'flex', alignItems: 'center', borderRadius: '4px' }}>
-              <input type="text"  placeholder="Parent Mobile Number" 
-                style={{width: '73vh', padding: '5px', border: '1px solid #ccc', borderRadius: '4px 0 0 4px' }}
-              />
-              <MdOutlineDateRange style={{ padding: '8px', color: '#666' }} />
-            </div>
-          </div>
-        </div>
-        
-        <div style={{ display: 'flex', gap: '20px' }}>
-          <div style={{ flex: 1 }}>
-            <label style={{ display: 'block', marginBottom: '5px' }}>Date of Birth</label>
-            <input  type="date" placeholder="Enter Email" 
-              style={{width: '70vh', padding: '5px', border: '1px solid #ccc', borderRadius: '4px' }}
-            />
-          </div>
-          <div style={{ flex: 1 }}>
-            <label style={{ display: 'block', marginBottom: '5px' }}>Blood group</label>
-            <div style={{ display: 'flex', alignItems: 'center', borderRadius: '4px' }}>
-              <input type="text"  placeholder="Blood group" 
-                style={{width: '73vh', padding: '5px', border: '1px solid #ccc', borderRadius: '4px 0 0 4px' }}
-              />
-              <MdOutlineDateRange style={{ padding: '8px', color: '#666' }} />
-            </div>
-          </div>
-        </div>
+      <div className="bg-white p-4 max-w-full mx-1 my-2">
         <div>
-          <label>Address</label>
-          <div>
-            <textarea style={{width: '150vh', height: '10vh', padding: '5px'}} placeholder='Address'/>
-            </div>
-        </div>
-        <div style={{border: '1px solid #ccc', width: '50vh', borderRadius: '2px'}}>
-          <button style={{border: 'transparent', height: '30px', padding: '5px'}}>Choose file</button>
-          <button  style={{border: 'transparent',background: 'none', paddingLeft: '5px'}}>No file choosen</button>
-        </div>
-        <div>
-        <div>
-          <button onClick={valiation} style={{backgroundColor: '#4c8df6ff', color: '#fff', border: 'transparent',margin: '2px', width: '70px', height: '30px', borderRadius: '2px'}}>Submit</button>
-          <button style={{backgroundColor: '#6dd58cff', color: '#0f5223ff', border: 'transparent', width: '70px', height: '30px', borderRadius: '2px'}}>Cancel</button>
-        </div>
-        </div>
+          <h3 className="text-lg font-semibold">Basic Info</h3>
+          <hr className="my-2" />
 
+          <div className="flex flex-col gap-4 mt-4">
+            <div className="flex flex-col md:flex-row gap-4">
+              {/* first name  */}
+              <div className="w-full md:w-1/2">
+                <label className="block mb-1">First Name</label>
+                <div
+                  className="flex items-center border rounded-md px-2 py-1"
+                  style={{ borderColor: errors.firstName ? "red" : "#ccc" }}
+                >
+                  <input
+                    type="text"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    placeholder="Enter First Name"
+                    className={` w-full  px-2 py-1  rounded-md `}
+                  />
+                  {errors.firstName && (
+                    <AiOutlineInfoCircle className="text-red-500 ml-2" />
+                  )}
+                </div>
+                {errors.firstName && (
+                  <span className="text-red-500">{errors.firstName}</span>
+                )}
+              </div>
+              {/* last name  */}
+              <div className="w-full md:w-1/2">
+                <label className="block mb-1">Last Name</label>
+                <input
+                  type="text"
+                  name="lastName"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  placeholder="Enter Last Name"
+                  className={` w-full  px-2 py-1  rounded-md border ${
+                    errors.firstName ? "border-red-500" : "border-gray-300"
+                  }`}
+                />
+                {errors.lastName && (
+                  <span className="text-red-500">{errors.lastName}</span>
+                )}
+              </div>
+            </div>
+
+            <div className="flex flex-col md:flex-row gap-4">
+              {/* email  */}
+              <div className="w-full md:w-1/2">
+                <label className="block mb-1">Email</label>
+                <input
+                  type="text"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="Enter Email"
+                  className={` w-full  px-2 py-1  rounded-md border ${
+                    errors.email ? "border-red-500" : "border-gray-300"
+                  }`}
+                />
+                {errors.email && (
+                  <span className="text-red-500">{errors.email}</span>
+                )}
+              </div>
+              {/* registration date  */}
+              <div className="w-full md:w-1/2">
+                <label className="block mb-1">Registration Date</label>
+                <input
+                  type="date"
+                  name="registrationDate"
+                  value={formData.registrationDate}
+                  onChange={handleChange}
+                  className={` w-full  px-2 py-1  rounded-md border ${
+                    errors.registrationDate
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  }`}
+                />
+                {errors.registrationDate && (
+                  <span className="text-red-500">
+                    {errors.registrationDate}
+                  </span>
+                )}
+              </div>
+            </div>
+
+            <div className="flex flex-col md:flex-row gap-4">
+              {/* roll number  */}
+              <div className="w-full md:w-1/2">
+                <label className="block mb-1">Roll No.</label>
+                <input
+                  type="number"
+                  placeholder="Roll No"
+                  name="rollNo"
+                  value={formData.rollNo}
+                  onChange={handleChange}
+                  className={` w-full  px-2 py-1  rounded-md border ${
+                    errors.rollNo ? "border-red-500" : "border-gray-300"
+                  }`}
+                />
+                {errors.rollNo && (
+                  <span className="text-red-500">{errors.rollNo}</span>
+                )}
+              </div>
+              {/* student class  */}
+              <div className="w-full md:w-1/2">
+                <label className="block mb-1">Class</label>
+                <select
+                  name="studentClass"
+                  value={formData.studentClass}
+                  onChange={handleChange}
+                  className={`w-full px-2 py-1 border ${
+                    errors.studentClass ? "border-red-500" : "border-gray-300"
+                  } rounded-md`}
+                >
+                  <option value="">Select Class</option>
+                  {Array.from({ length: 12 }, (_, i) => i + 1).map((value) => (
+                    <option key={value} value={value}>
+                      {value}
+                    </option>
+                  ))}
+                </select>
+                {errors.studentClass && (
+                  <span className="text-red-500">{errors.studentClass}</span>
+                )}
+              </div>
+            </div>
+
+            <div className="flex flex-col md:flex-row gap-4">
+              {/* gender  */}
+              <div className="w-full md:w-1/2">
+                <label className="block mb-1">Gender</label>
+                <select
+                  name="gender"
+                  value={formData.gender}
+                  onChange={handleChange}
+                  className={`w-full px-2 py-1 border ${
+                    errors.gender ? "border-red-500" : "border-gray-300"
+                  } rounded-md`}
+                >
+                  <option value="male">Select Option</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+                {errors.gender && (
+                  <span className="text-red-500">{errors.gender}</span>
+                )}
+              </div>
+              {/* mobile  */}
+              <div className="w-full md:w-1/2">
+                <label className="block mb-1">Mobile Number</label>
+                <input
+                  type="number"
+                  placeholder="Mobile Number"
+                  name="mobileNumber"
+                  value={formData.mobileNumber}
+                  onChange={handleChange}
+                  className={` w-full  px-2 py-1  rounded-md border ${
+                    errors.mobileNumber ? "border-red-500" : "border-gray-300"
+                  }`}
+                />
+                {errors.mobileNumber && (
+                  <span className="text-red-500">{errors.mobileNumber}</span>
+                )}
+              </div>
+            </div>
+
+            <div className="flex flex-col md:flex-row gap-4">
+              {/* parent name  */}
+              <div className="w-full md:w-1/2">
+                <label className="block mb-1">Parent Name</label>
+                <input
+                  type="text"
+                  placeholder="Parent Name"
+                  name="parentName"
+                  value={formData.parentName}
+                  onChange={handleChange}
+                  className={` w-full  px-2 py-1  rounded-md border ${
+                    errors.parentName ? "border-red-500" : "border-gray-300"
+                  }`}
+                />
+                {errors.parentName && (
+                  <span className="text-red-500">{errors.parentName}</span>
+                )}
+              </div>
+              {/* parent mobile number  */}
+              <div className="w-full md:w-1/2">
+                <label className="block mb-1">Parent Mobile Number</label>
+                <input
+                  type="number"
+                  name="parentMobileNumber"
+                  value={formData.parentMobileNumber}
+                  onChange={handleChange}
+                  className={` w-full  px-2 py-1  rounded-md border ${
+                    errors.parentMobileNumber
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  }`}
+                />
+                {errors.parentMobileNumber && (
+                  <span className="text-red-500">
+                    {errors.parentMobileNumber}
+                  </span>
+                )}
+              </div>
+            </div>
+
+            <div className="flex flex-col md:flex-row gap-4">
+              {/* date of birth  */}
+              <div className="w-full md:w-1/2">
+                <label className="block mb-1">Date of Birth</label>
+                <input
+                  type="date"
+                  name="dob"
+                  value={formData.dob}
+                  onChange={handleChange}
+                  className={` w-full  px-2 py-1  rounded-md border ${
+                    errors.dob ? "border-red-500" : "border-gray-300"
+                  }`}
+                />
+                {errors.dob && (
+                  <span className="text-red-500">{errors.dob}</span>
+                )}
+              </div>
+
+              {/* blood group  */}
+              <div className="w-full md:w-1/2">
+                <label className="block mb-1">Blood Group</label>
+                <select
+                  name="bloodGroup"
+                  value={formData.bloodGroup}
+                  onChange={handleChange}
+                  className={`w-full px-2 py-1 border ${
+                    errors.bloodGroup ? "border-red-500" : "border-gray-300"
+                  } rounded-md`}
+                >
+                  <option value="">Select Blood Group</option>
+                  <option value="A+">A+</option>
+                  <option value="A-">A-</option>
+                  <option value="B+">B+</option>
+                  <option value="B-">B-</option>
+                  <option value="AB+">AB+</option>
+                  <option value="AB-">AB-</option>
+                  <option value="O+">O+</option>
+                  <option value="O-">O-</option>
+                </select>
+                {errors.bloodGroup && (
+                  <span className="text-red-500">{errors.bloodGroup}</span>
+                )}
+              </div>
+            </div>
+
+            <div>
+              <label className="block mb-1">Address</label>
+              <textarea
+                name="address"
+                value={formData.address}
+                onChange={handleChange}
+                className={`w-full h-24 px-2 py-1 border ${
+                  errors.address ? "border-red-500" : "border-gray-300"
+                } rounded-md`}
+                placeholder="Address"
+              />
+              {errors.address && (
+                <span className="text-red-500">{errors.address}</span>
+              )}
+            </div>
+
+            <div className="border border-gray-300 w-full sm:w-1/2 p-1 rounded-md flex items-center gap-2">
+              <button className="bg-gray-100 py-1 px-2 rounded-md">
+                Choose file
+              </button>
+              <span>No file chosen</span>
+            </div>
+
+            <div className="flex gap-2">
+              <button
+                onClick={handleSubmit}
+                className="bg-blue-600 text-white px-4 py-1 rounded-md"
+              >
+                Submit
+              </button>
+              <button className="bg-green-400 text-green-900 px-4 py-1 rounded-md">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
