@@ -1,8 +1,6 @@
 "use client";
 import React from "react";
-import { MdOutlineDateRange } from "react-icons/md";
 import { AiOutlineInfoCircle } from "react-icons/ai";
-import * as FcIcons from 'react-icons/fc';
 import { AiOutlineRight } from "react-icons/ai";
 import { useState } from "react";
 
