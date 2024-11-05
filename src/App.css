@@ -12,56 +12,18 @@ body {
     background: #ebe9e9;
 }
 
-.container_Header {
+
+.header{
+    border: 2px solid black;
+}
+.main-sidebar{
     display: flex;
-    background-color: #fff;
+    border: 2px solid red;
+}
+.sidebar{
+    border: 2px solid black;
+}
+.main{
+    border: 2px solid black;
     width: 100%;
-    height: 80px;
-    padding: 0 15px;
-    margin: 0 auto;
-}
-.sidebarwrapper {
-    display: flex;
-    width: 20%;
-    height: 90vh;
-    background-color: #fff;
-    transition: all 0.3s ease-in-out;
-}
-
-.sidebar_btns ul li button {
-    width: 100%;
-    height: 50px;
-    border: transparent;
-    font-size: 18px; 
-    padding: 0 12px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
-    cursor: pointer;
-}
-.sidebar_btns ul li button:hover {
-    transition: background-color 0.3s ease;
-    background-color: aqua;
-}
-
-.sidebar_btns_icons_left,
-.sidebar_btns_icons_right {
-    display: flex;
-    font-size: 20px;
-    padding: 15px 10px;
-    align-items: center;
-}
-
-.sidebar_btns_icons_left {
-    justify-content: flex-start;
-}
-
-.sidebar_btns_icons_right {
-    justify-content: flex-end;
-}
-.container_add_students{
-    background-color: #fff;
-    width: 100%;
-    
 }
