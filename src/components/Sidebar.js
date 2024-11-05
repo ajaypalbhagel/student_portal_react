@@ -6,7 +6,7 @@ import { MdArrowRight } from "react-icons/md";
 import { IoMan } from "react-icons/io5";
 import { FaPeopleCarry } from "react-icons/fa";
 import { FaGraduationCap } from "react-icons/fa6";
-import Dashboard from '../pages/Dashboard';
+import Dashboard from '../pages/Dashboard/index';
 
 
 export default function Sidebar() { 

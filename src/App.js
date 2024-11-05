@@ -1,6 +1,6 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import './App.css'
-import Dashboard from './pages/Dashboard';
+import Dashboard from './pages/Dashboard/index';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import AddStudents from './pages/Students/AddStudents';
