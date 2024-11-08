@@ -1,13 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Dashboard from "./pages/Dashboard/index";
-import Header from "./components/Header";
-import Sidebar from "./components/Sidebar";
-import AddStudents from "./pages/Students/AddStudents";
-import SubHeader from "./components/SubHeader";
-import EventManagement from "./pages/EventManagement";
-import Professors from "./pages/Professors";
-import Courses from "./pages/Courses";
+import Header from "./app/common/components/Header";
+import Sidebar from "./app/common/components/Sidebar";
+import AddStudents from "./app/admin/components/manage-students/AddStudents";
+import SubHeader from "./app/common/components/SubHeader";
+import ListStudents from "./app/admin/components/manage-students/ListStudents";
 
 function App() {
   return (
@@ -16,30 +13,18 @@ function App() {
       <div className="header">
         <Header />
       </div>
-
       {/* sidebar  and main-container  */}
       <div className="main-sidebar">
-        <div className="sidebar">
+        <div>
           <Sidebar />
         </div>
-
+        {/* main-content */}
         <div className="main">
-
           <SubHeader />
-
           <Routes>
-            <Route path="/" exact={true} element={<Dashboard />} />
-            <Route path="/dashboard" exact={true} element={<Dashboard />} />
-            <Route
-              path="/EventManagement"
-              exact={true}
-              element={<EventManagement />}
-            />
-            <Route path="/Professors" exact={true} element={<Professors />} />
-            <Route path="/AddStudents" exact={true} element={<AddStudents />} />
-            <Route path="/courses" exact={true} element={<Courses />} />
-          </Routes>
-          
+            <Route path="/admin/AddStudents" exact={true} element={<AddStudents/>} />
+            <Route path="/admin/ListStudents" exact={true} element={<ListStudents/>} />
+          </Routes>          
         </div>
       </div>
     </BrowserRouter>

@@ -1,9 +1,9 @@
 import React from 'react'
 import { MdKeyboardArrowRight } from "react-icons/md";
 
-export default function SubHeader() {
+const SubHeader = () => {
   return (
-    <div style={{ display:'flex' , justifyContent:'space-between' ,backgroundColor: '#fff'}}>
+    <div style={{ display:'flex' , justifyContent:'space-between' ,backgroundColor: '#fff', margin: '5px', padding: '10px'}}>
         <div >
           <h3 style={{color: '#4c8df6ff'}}>Add Student</h3>
         </div>
@@ -17,3 +17,4 @@ export default function SubHeader() {
     </div>
   )
 }
+export default SubHeader;

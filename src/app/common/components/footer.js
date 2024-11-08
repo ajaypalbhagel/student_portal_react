@@ -1,9 +1,11 @@
 import React from 'react'
 
-export default function Professors() {
+const Footer = () => {
   return (
     <div>
-      Professors
+      footer
     </div>
   )
 }
+
+export default Footer

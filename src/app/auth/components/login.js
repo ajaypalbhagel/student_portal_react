@@ -1,9 +1,11 @@
 import React from 'react'
 
-export default function Dashboard() {
+const login = () => {
   return (
     <div>
-      dashboard 
+      Login page
     </div>
   )
 }
+
+export default login

@@ -15,40 +15,107 @@ export default function AddStudents() {
   const [rollNoEmpty, setRollNoEmpty] = useState(true)
   const [className, setClassName] = useState('')
   const [classNameEmpty, setClassNameEmpty] = useState(true)
-  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [gender, setGender] = useState('')
+  const [genderEmpty, setGenderEmpty] = useState(true)
+  const [parentName, setParentName] = useState('')
+  const [parentNameEmpty, setParentNameEmpty] = useState(true)
+  const [mobileNumber, setMobileNumber] = useState('')
+  const [mobileNumberEmpty, setMobileNumberEmpty] = useState(true)
+  const [parentMobileNumber, setParentMobileNumber] = useState('')
+  const [parentMobileNumberEmpty, setParentMobileNumberEmpty] = useState(true)
+  const [birthDate, setBirthDate] = useState('')
+  const [birthDateEmpty, setBirthDateEmpty] = useState(true)
+  const [bloodGroup, setBloodGroup] = useState('')
+  const [bloodGroupEmpty, setBloodGroupEmpty] = useState(true)
+  const [address, setAddress] = useState('')
+  const [addressEmpty, setAddressEmpty] = useState(true)
 
-  function valiation(){
-    if(firstName ==''){
+
+  
+  function valiation(e){
+    e.preventDefault();
+    if(firstName === '' || !validateName(firstName)){
       setFirstNameEmpty(false);
+    }else{
+      setFirstNameEmpty(true);
     }
-    if(lastName == ''){
+    if(lastName === '' || !validateName(lastName)){
       setLastNameEmpty(false);
+    }else{
+      setLastNameEmpty(true)
     }
-    if(email == ''){
+    if(email === ''){
       setEmailEmpty(false);
     }
-    if(registerDate == ''){
-      setRegisterDateEmpty(false);
-    }
-    if(rollNo == ''){
-      setRollNoEmpty(false)
-    }
-    if(className == ''){
-      setClassNameEmpty(false)
-    }
     else{
-      setFirstNameEmpty(true);
-      setLastNameEmpty(true);
-      setEmailEmpty(true);
+      setEmailEmpty(true)
+    }
+    if(registerDate === ''){
+      setRegisterDateEmpty(false);
+    }else{
       setRegisterDateEmpty(true)
+    }
+    if(rollNo === ''){
+      setRollNoEmpty(false)
+    }else{
       setRollNoEmpty(true)
+    }
+    if(className === ''){
+      setClassNameEmpty(false)
+    }else{
       setClassNameEmpty(true)
     }
-    if (email !== '') {
-      setFormSubmitted(true); 
-    } else {
-      setFormSubmitted(false); 
+    if(gender === ''){
+      setGenderEmpty(false)
+    }else{
+      setGenderEmpty(true)
     }
+    if(parentName === ''){
+      setParentNameEmpty(false)
+    }else{
+      setParentNameEmpty(true)
+    }
+    if(mobileNumber === ''){
+      setMobileNumberEmpty(false)
+    }else{
+      setMobileNumberEmpty(true)
+    }
+    if(parentMobileNumber === ''){
+      setParentMobileNumberEmpty(false)
+    }else{
+      setParentMobileNumberEmpty(true)
+    }
+    if(birthDate === ''){
+      setBirthDateEmpty(false)
+    }else{
+      setBirthDateEmpty(true)
+    }
+    if(bloodGroup === ''){
+      setBloodGroupEmpty(false)
+    }else{
+      setBloodGroupEmpty(true)
+    }
+    if(address === ''){
+      setAddressEmpty(false)
+    }else{
+      setAddressEmpty(true)
+    }
+
+
+    if(email && !validateEmail(email)){
+      setEmailEmpty(false)
+    }
+   
+  }
+
+  function validateName(name){
+    const regex = /^[a-zA-Z'-]{2,30}$/;
+    return regex.test(name)
+  }
+
+  function validateEmail(email){
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email)
   }
 
   return (
@@ -61,14 +128,14 @@ export default function AddStudents() {
         <div style={{ display: 'flex',flexWrap: 'wrap', gap: '20px'}}>
           <div style={{flex: 1}}>
             <label style={{ display: 'block', marginBottom: '5px' }}>First Name<span style={{color: 'red'}}>*</span></label>
-            <input type="text"   value={firstName}   onChange={(e) => setFirstName(e.target.value)}  placeholder="Enter First Name" 
+            <input type="text"   value={firstName}   onChange={(e) => setFirstName(e.target.value.trim())}  placeholder="Enter First Name" 
               style={{ width: '100%',padding: '5px', border: `${ firstNameEmpty ?'1px solid #ccc' : '1px solid red'}`, borderRadius: '4px' }}
             />
             <span style={{color: 'red', fontSize: '15px'}}>{firstNameEmpty ? "" : "please enter First name."}</span>
           </div>
           <div style={{ flex: 1 }}>
             <label style={{ display: 'block', marginBottom: '5px' }}>Last Name<span style={{color: 'red'}}>*</span></label>
-            <input type="text" value={lastName}   onChange={(e) => setLastName(e.target.value)} placeholder="Enter First Name" 
+            <input type="text" value={lastName}   onChange={(e) => setLastName(e.target.value.trim())} placeholder="Enter First Name" 
               style={{ width: '100%', padding: '5px',border: `${ lastNameEmpty ?'1px solid #ccc' : '1px solid red'}`, borderRadius: '4px' }}
             />
             <span style={{color: 'red', fontSize: '15px'}}>{lastNameEmpty ? "" : "please enter last name."}</span>
@@ -97,7 +164,7 @@ export default function AddStudents() {
         <div style={{ display: 'flex', gap: '20px' }}>
           <div style={{ flex: 1 }}>
             <label style={{ display: 'block', marginBottom: '5px' }}>Roll No.<span style={{color: 'red'}}>*</span></label>
-            <input  type="text"  value={rollNo}   onChange={(e) => setRollNo(e.target.value)} placeholder="Roll No"  
+            <input  type="number"  value={rollNo}   onChange={(e) => setRollNo(e.target.value)} placeholder="Roll No" maxLength='10' 
               style={{ width: '100%', padding: '5px',border: `${rollNoEmpty ?'1px solid #ccc' : '1px solid red'}`,  borderRadius: '4px' }}
             />
              <span style={{color: 'red', fontSize: '15px'}}>{rollNoEmpty ? "" : "please enter Roll No."}</span>
@@ -113,6 +180,9 @@ export default function AddStudents() {
                 <option value="3">3</option>
                 <option value="4">4</option>
                 <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
               </select>
             </div>
             <span style={{color: 'red', fontSize: '15px'}}>{classNameEmpty ? '' : "please enter class."}</span>
@@ -122,53 +192,58 @@ export default function AddStudents() {
         <div style={{ display: 'flex', gap: '20px' }}>
           <div style={{ flex: 1 }}>
             <label style={{ display: 'block', marginBottom: '5px' }}>Gender </label>
-            <select  type="text" placeholder="Gender" 
-              style={{  width: '100%', padding: '5px', border:'1px solid #ccc',  borderRadius: '4px' }}>
-                <option value="male">Select Options</option>
+            <select  type="text" value={gender} onChange={(e) => setGender(e.target.value)} placeholder="Gender" 
+              style={{  width: '100%', padding: '5px', border:`${genderEmpty ?'1px solid #ccc' :'1px solid red' }`,  borderRadius: '4px' }}>
+                <option value="select options">Select Options</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
                 <option value="other">Other</option>
               </select>
+          <span style={{color: 'red', fontSize: '15px'}}>{genderEmpty ? '' : "please enter Gender."}</span>
           </div>
           <div style={{ flex: 1 }}>
             <label style={{ display: 'block', marginBottom: '5px' }}>Mobile Number </label>
             <div style={{ display: 'flex', alignItems: 'center', borderRadius: '4px' }}>
-              <input type="tel"  placeholder="Mobile Number" maxlength="10"
-                style={{  width: '100%', padding: '5px',border:'1px solid #ccc',  borderRadius: '4px 0 0 4px' }}
+              <input type="tel" value={mobileNumber} onChange={(e) => setMobileNumber(e.target.value)} placeholder="Mobile Number" maxLength="10"
+                style={{  width: '100%', padding: '5px',border: `${mobileNumberEmpty ? '1px solid #ccc' : '1px solid red'}`,  borderRadius: '4px 0 0 4px' }}
               />
             </div>
+              <span style={{color: 'red', fontSize: '15px'}}>{mobileNumberEmpty ? "" : "please enter mobile number."}</span>
           </div>
         </div>
        
         <div style={{ display: 'flex', gap: '20px' }}>
           <div style={{ flex: 1 }}>
             <label style={{ display: 'block', marginBottom: '5px' }}>Parent Name </label>
-            <input  type="text" placeholder="Parent Name" 
-              style={{  width: '100%', padding: '5px', border:'1px solid #ccc', borderRadius: '4px' }}
+            <input  type="text" value={parentName} onChange={(e) => setParentName(e.target.value)} placeholder="Parent Name" 
+              style={{  width: '100%', padding: '5px', border:`${parentNameEmpty ?'1px solid #ccc' :'1px solid red' }`, borderRadius: '4px' }}
             />
+            <span style={{color: 'red', fontSize: '15px'}}>{parentNameEmpty ? '' : "please enter Parent Name."}</span>
           </div>
           <div style={{ flex: 1 }}>
-            <label style={{ display: 'inline', marginBottom: '5px' }}>Parent Mobile Number</label>
+            <label style={{ display: 'block', marginBottom: '5px' }}>Parent Mobile Number</label>
             <div style={{ display: 'flex', alignItems: 'center', borderRadius: '4px' }}>
-              <input type="tel"  placeholder="Parent Mobile Number" maxlength="10"
-                style={{  width: '100%', padding: '5px', border:'1px solid #ccc', borderRadius: '4px 0 0 4px' }}
+              <input type="tel" value={parentMobileNumber} onChange={(e) => setParentMobileNumber(e.target.value)} placeholder="Parent Mobile Number" maxLength="10"
+                style={{  width: '100%', padding: '5px', border:`${parentMobileNumberEmpty ? '1px solid #ccc' : '1px solid red'}`, borderRadius: '4px' }}
               />
             </div>
+            <span style={{color: 'red', fontSize: '15px'}}>{parentMobileNumberEmpty ? '' : "please enter Parent Mobile Number."}</span>
           </div>
         </div>
         
         <div style={{ display: 'flex', gap: '20px' }}>
           <div style={{ flex: 1 }}>
             <label style={{ display: 'block', marginBottom: '5px' }}>Date of Birth</label>
-            <input  type="date" placeholder="Enter Email" min="2019-01-01"
-              style={{  width: '100%',padding: '5px', border:'1px solid #ccc', borderRadius: '4px' }}
+            <input  type="date" value={birthDate} onChange={(e) => setBirthDate(e.target.value)} min="1980-01-01" max= "2020-01-01"
+              style={{  width: '100%',padding: '5px', border:`${birthDateEmpty ? '1px solid #ccc' : '1px solid red'}`, borderRadius: '4px' }}
             />
+          <span style={{color: 'red', fontSize: '15px'}}>{birthDateEmpty ? '' : "please enter birth Date."}</span>
           </div>
           <div style={{ flex: 1 }}>
-            <label style={{ display: 'inline', marginBottom: '5px' }}>Blood group</label>
-            <iv style={{ display: 'flex', alignItems: 'center', borderRadius: '4px' }}>
-              <select type="text"
-                style={{ width: '100%', padding: '5px',border:'1px solid #ccc', borderRadius: '4px' }}>
+            <label style={{ display: 'block', marginBottom: '5px' }}>Blood group</label>
+            <div style={{ display: 'flex', alignItems: 'center', borderRadius: '4px' }}>
+              <select type="text" value={bloodGroup} onChange={(e) => setBloodGroup(e.target.value)}
+                style={{ width: '100%', padding: '5px',border:`${bloodGroupEmpty ? '1px solid #ccc' : '1px solid red'}`, borderRadius: '4px' }}>
                 <option>Select options</option>
                 <option>A+</option>
                 <option>A</option>
@@ -179,14 +254,16 @@ export default function AddStudents() {
                 <option>AB</option>
                 <option>AB+</option>
               </select>
-            </iv>
+            </div>
+            <span style={{color: 'red', fontSize: '15px'}}>{bloodGroupEmpty ? '' : "please enter blood group."}</span>
           </div>
         </div>
         <div>
           <label>Address </label>
           <div>
-            <textarea style={{ width: '100%',height: '10vh', padding: '5px'}} placeholder='Address'/>
-            </div>
+            <textarea value={address} onChange={(e) => setAddress(e.target.value)} style={{ width: '100%',height: '10vh', padding: '5px', border:`${addressEmpty ? '1px solid #ccc' : '1px solid red'}`}} placeholder='Address'/>
+          </div>
+          <span style={{color: 'red', fontSize: '15px'}}>{addressEmpty ? '' : "please enter address."}</span>
         </div>
         <div style={{border: '1px solid #ccc',  borderRadius: '2px'}}>
           <button style={{border: 'transparent', height: '30px', padding: '5px'}}>Choose file</button>
@@ -194,9 +271,9 @@ export default function AddStudents() {
         </div>
         <div>
         <div>
-          <button onClick={valiation}  style={{backgroundColor: '#4c8df6ff', color: '#fff', border: 'transparent',margin: '2px',  height: '30px', borderRadius: '2px'}}>Submit</button>
-          <button style={{backgroundColor: '#6dd58cff', color: '#0f5223ff', border: 'transparent',  height: '30px', borderRadius: '2px'}}>Cancel</button>
-          <span style={{ color: 'green', padding: '10px' }}>{formSubmitted ? 'Form submitted successfully!' : ''}</span>
+          <button onClick={(e) => valiation(e)}  style={{backgroundColor: '#4c8df6ff', color: '#fff', border: 'transparent',margin: '2px', height: '30px', borderRadius: '2px',width: '60px'}}>Submit</button>
+          <button style={{backgroundColor: '#6dd58cff', color: '#0f5223ff', border: 'transparent',  height: '30px', borderRadius: '2px',width: '60px'}}>Cancel</button>
+          <span style={{ color: 'green', padding: '10px' }}></span>
         </div>
         </div>
 
