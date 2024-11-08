@@ -1,10 +1,8 @@
 "use client";
-import React from "react";
+import React ,{ useState } from "react";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { AiOutlineRight } from "react-icons/ai";
-import { useState } from "react";
-
-export default function page() {
+export default function Page() {
   // Using a single state object for all fields
   const [formData, setFormData] = useState({
     firstName: "",

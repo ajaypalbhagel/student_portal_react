@@ -29,10 +29,10 @@ const menuItems = [
         href: "#",
         visible: ["admin", "teacher"],
         subItems: [
-          { label: "- Add Student", href: "/student", visible: ["admin", "teacher"] },
+          { label: "- Add Student", href: "/student/add", visible: ["admin", "teacher"] },
           { label: "- Edit Student", href: "/student/edit", visible: ["admin", "teacher"] },
           { label: "- About Student", href: "/student/about", visible: ["admin", "teacher"] },
-          { label: "-All Students", href: "/students/all", visible: ["admin", "teacher", "student"] },
+          { label: "-All Students", href: "/student/allstudent", visible: ["admin", "teacher", "student"] },
         ],
       },
       {
