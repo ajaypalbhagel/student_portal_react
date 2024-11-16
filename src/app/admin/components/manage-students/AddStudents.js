@@ -1,5 +1,7 @@
 "use client";
 import React, { useState } from 'react';
+import './students.css'
+import { MdKeyboardArrowRight } from "react-icons/md";
 
 export default function AddStudents() {
 
@@ -11,10 +13,10 @@ export default function AddStudents() {
   const [emailEmpty,setEmailEmpty] = useState(true)
   const [registerDate, setRegisterDate] = useState('')
   const [registerDateEmpty, setRegisterDateEmpty] = useState(true)
-  const [rollNo, setRollNo] = useState('')
-  const [rollNoEmpty, setRollNoEmpty] = useState(true)
   const [className, setClassName] = useState('')
   const [classNameEmpty, setClassNameEmpty] = useState(true)
+  const [sectionField, setSectionField] = useState('')
+  const [sectionEmpty, setSectionEmpty] = useState(true)
   const [gender, setGender] = useState('')
   const [genderEmpty, setGenderEmpty] = useState(true)
   const [parentName, setParentName] = useState('')
@@ -55,15 +57,15 @@ export default function AddStudents() {
     }else{
       setRegisterDateEmpty(true)
     }
-    if(rollNo === ''){
-      setRollNoEmpty(false)
-    }else{
-      setRollNoEmpty(true)
-    }
     if(className === ''){
       setClassNameEmpty(false)
     }else{
       setClassNameEmpty(true)
+    }
+    if(sectionField === ''){
+      setSectionEmpty(false)
+    }else{
+      setSectionEmpty(true)
     }
     if(gender === ''){
       setGenderEmpty(false)
@@ -101,11 +103,9 @@ export default function AddStudents() {
       setAddressEmpty(true)
     }
 
-
     if(email && !validateEmail(email)){
       setEmailEmpty(false)
     }
-   
   }
 
   function validateName(name){
@@ -119,6 +119,18 @@ export default function AddStudents() {
   }
 
   return (
+    <>
+        <div style={{display:'flex', justifyContent:'space-between' ,backgroundColor: '#fff', margin: '5px', padding: '10px'}}>
+        <div >
+          <h3 style={{color: '#4c8df6ff'}}>Add Student</h3>
+        </div>
+        <div className='flex'>           
+                <span>Students</span>
+                <MdKeyboardArrowRight size={24}/>
+                <span style={{color: '#4c8df6ff'}}>Add Student
+                </span>           
+          </div>
+      </div>
     <form style={{display: 'flex', flexDirection:'column', backgroundColor: '#fff', padding: '10px',  margin: '5px' }}>
       <h3>Basic Info</h3>
       <hr />
@@ -163,29 +175,30 @@ export default function AddStudents() {
         
         <div style={{ display: 'flex', gap: '20px' }}>
           <div style={{ flex: 1 }}>
-            <label style={{ display: 'block', marginBottom: '5px' }}>Roll No.<span style={{color: 'red'}}>*</span></label>
-            <input  type="number"  value={rollNo}   onChange={(e) => setRollNo(e.target.value)} placeholder="Roll No" maxLength='10' 
-              style={{ width: '100%', padding: '5px',border: `${rollNoEmpty ?'1px solid #ccc' : '1px solid red'}`,  borderRadius: '4px' }}
-            />
-             <span style={{color: 'red', fontSize: '15px'}}>{rollNoEmpty ? "" : "please enter Roll No."}</span>
+            <label style={{ display: 'block', marginBottom: '5px' }}>Class<span style={{color: 'red'}}>*</span></label>
+            <select  type="number"  value={className}   onChange={(e) => setClassName(e.target.value)} placeholder="Enter Class" maxLength='10' 
+              style={{ width: '100%', padding: '5px',border: `${classNameEmpty ?'1px solid #ccc' : '1px solid red'}`,  borderRadius: '4px' }}>
+            <option value="select option">Select options</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            </select>
+             <span style={{color: 'red', fontSize: '15px'}}>{classNameEmpty ? "" : "please enter Class."}</span>
           </div>
           <div style={{ flex: 1 }}>
-            <label style={{display: 'block', marginBottom: '5px'}}>Class<span style={{color: 'red'}}>*</span> </label>
+            <label style={{display: 'block', marginBottom: '5px'}}>Section<span style={{color: 'red'}}>*</span> </label>
             <div style={{ display: 'flex', alignItems: 'center', borderRadius: '4px'}}>
-              <select type="number" value={className} onChange={(e) => setClassName(e.target.value)} 
-                style={{  width: '100%', padding: '5px', border:`${classNameEmpty ?'1px solid #ccc' :'1px solid red' }`, borderRadius: '4px'}}>
+              <select type="number" value={sectionField} onChange={(e) => setSectionField(e.target.value)} 
+                style={{  width: '100%', padding: '5px', border:`${sectionEmpty ?'1px solid #ccc' :'1px solid red' }`, borderRadius: '4px'}}>
                 <option value="">Select options</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
               </select>
             </div>
-            <span style={{color: 'red', fontSize: '15px'}}>{classNameEmpty ? '' : "please enter class."}</span>
+            <span style={{color: 'red', fontSize: '15px'}}>{sectionEmpty ? '' : "please enter section."}</span>
           </div>
         </div>
        
@@ -204,8 +217,9 @@ export default function AddStudents() {
           <div style={{ flex: 1 }}>
             <label style={{ display: 'block', marginBottom: '5px' }}>Mobile Number </label>
             <div style={{ display: 'flex', alignItems: 'center', borderRadius: '4px' }}>
-              <input type="tel" value={mobileNumber} onChange={(e) => setMobileNumber(e.target.value)} placeholder="Mobile Number" maxLength="10"
-                style={{  width: '100%', padding: '5px',border: `${mobileNumberEmpty ? '1px solid #ccc' : '1px solid red'}`,  borderRadius: '4px 0 0 4px' }}
+              <input type="number" value={mobileNumber} onChange={(e) => setMobileNumber(e.target.value)} placeholder="Mobile Number" maxLength="10"
+                style={{  width: '100%', padding: '5px',border: `${mobileNumberEmpty ? '1px solid #ccc' : '1px solid red'}`,  borderRadius: '4px 0 0 4px'}}
+                
               />
             </div>
               <span style={{color: 'red', fontSize: '15px'}}>{mobileNumberEmpty ? "" : "please enter mobile number."}</span>
@@ -223,7 +237,7 @@ export default function AddStudents() {
           <div style={{ flex: 1 }}>
             <label style={{ display: 'block', marginBottom: '5px' }}>Parent Mobile Number</label>
             <div style={{ display: 'flex', alignItems: 'center', borderRadius: '4px' }}>
-              <input type="tel" value={parentMobileNumber} onChange={(e) => setParentMobileNumber(e.target.value)} placeholder="Parent Mobile Number" maxLength="10"
+              <input type="number" pattern="[0-9]" value={parentMobileNumber} onChange={(e) => setParentMobileNumber(e.target.value)} placeholder="Parent Mobile Number" maxLength="10"
                 style={{  width: '100%', padding: '5px', border:`${parentMobileNumberEmpty ? '1px solid #ccc' : '1px solid red'}`, borderRadius: '4px' }}
               />
             </div>
@@ -243,7 +257,7 @@ export default function AddStudents() {
             <label style={{ display: 'block', marginBottom: '5px' }}>Blood group</label>
             <div style={{ display: 'flex', alignItems: 'center', borderRadius: '4px' }}>
               <select type="text" value={bloodGroup} onChange={(e) => setBloodGroup(e.target.value)}
-                style={{ width: '100%', padding: '5px',border:`${bloodGroupEmpty ? '1px solid #ccc' : '1px solid red'}`, borderRadius: '4px' }}>
+                style={{ width: '100%', padding: '6px',border:`${bloodGroupEmpty ? '1px solid #ccc' : '1px solid red'}`, borderRadius: '4px' }}>
                 <option>Select options</option>
                 <option>A+</option>
                 <option>A</option>
@@ -276,8 +290,8 @@ export default function AddStudents() {
           <span style={{ color: 'green', padding: '10px' }}></span>
         </div>
         </div>
-
       </div>
     </form>
+    </>
   );
 }
