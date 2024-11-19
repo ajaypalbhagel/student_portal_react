@@ -3,7 +3,7 @@ import { MdKeyboardArrowRight, MdOutlineAdd, MdEdit, MdDelete } from "react-icon
 
 const ListStudents = () => {
   const [searchTerm, setSearchTerm] = useState('');
-
+ 
   const students = [
     { profile: "https://i.pravatar.cc/150?img=2", rollNo: 15, education: "12th", mobile: "98765438", email: "jack@gmail.com", admissionDate: "26/11/2002" },
     { profile: "https://i.pravatar.cc/150?img=1", rollNo: 16, education: "12th", mobile: "98765439", email: "jane@gmail.com", admissionDate: "02/11/2003" },
@@ -17,11 +17,15 @@ const ListStudents = () => {
     { profile: "https://i.pravatar.cc/150?img=10", rollNo: 24, education: "12th", mobile: "98765447", email: "daniel@gmail.com", admissionDate: "18/11/2011" },
   ];
 
-    const filteredStudents = students.filter(student =>
-      Object.values(student).some(value =>
-        value.toString().toLowerCase().includes(searchTerm.toLowerCase())
+    const filteredStudents = students.filter(student => 
+      Object.entries(student).some(([key, value]) =>
+      key !== 'admissionDate' && key !== 'profile' && value.toString().toLowerCase().includes(searchTerm.toLowerCase())
       )
     );
+
+    const handleAddNewStdButton = () => {
+      window.location.href='./AddStudents'
+    }
 
   return (
     <div className="flex flex-col">
@@ -47,7 +51,7 @@ const ListStudents = () => {
       <div className="bg-white mx-1 p-4">
         <div className="flex justify-between py-3">
           <h4 className="font-semibold text-blue-400">All Students List</h4>
-          <button className="flex bg-blue-400 text-white p-1 rounded-sm hover:bg-slate-600">
+          <button className="flex bg-blue-400 text-white p-1 rounded-sm hover:bg-slate-600" onClick={handleAddNewStdButton}>
             <MdOutlineAdd size={22} />
             <span>Add new</span>
           </button>
@@ -102,7 +106,7 @@ const ListStudents = () => {
                 <td className="px-4 py-2">{student.admissionDate}</td>
                 <td className="px-4 py-2 flex space-x-2">
                   <button className="text-blue-500 hover:text-blue-800">
-                    <MdEdit size={20} />
+                    <MdEdit size={20} onClick={handleAddNewStdButton}/>
                   </button>
                   <button className="text-red-500 hover:text-red-800">
                     <MdDelete size={20} />
